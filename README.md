@@ -10,9 +10,8 @@ This is a web based project, where students can take mcq test with live scorecar
 What things you need to install the software.
 ```
 - Nodejs
-- NodeMon
 - MongoDB
-- Express FrameWork
+- npm
 - Mongoose FrameWork
 - Chrome/Firefox
 ```
@@ -23,7 +22,8 @@ How to install the requirements
 
 ```
 - sudo apt-get update
-- sudo apt-get install nodejs, mongoose, express, mongodb
+- sudo apt-get install nodejs, mongoose, mongodb
+- npm install nodemon express -g
 ```
 
 ## Deployment
@@ -48,8 +48,6 @@ How to install the requirements
 * **Manvendra Dattatrey** - *Initial work* - [PurpleBooth](https://github.com/SSPrafulTondomker)
 * **Austin Kispotta** - *Initial work* - [PurpleBooth](https://github.com/SSPrafulTondomker)
 * **Reena Yadav** - *Initial work* - [PurpleBooth](https://github.com/SSPrafulTondomker)
-* **Vikash kumar** - *Initial work* - [PurpleBooth](https://github.com/SSPrafulTondomker)
+* **Vikash kumar** - *Initial work* - [PurpleBooth](https://github.com/vikash-kr)
 
 See also the list of [contributors](https://github.com/SSPrafulTondomker/MCQ/contributors) who participated in this project.
-
-
