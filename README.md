@@ -1,20 +1,21 @@
 # MCQ
-Software Development
-
-# Project Title
-
-One Paragraph of project description goes here
+Software Development Project
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This is a web based project, where students can take mcq test with live scorecard and ranking. Teachers can create test, evaluate answers.  
 
 ### Prerequisites
 
 What things you need to install the software and how to install them
-
+- Nodejs
+- NodeMon
+- MongoDB
+- Express FrameWork
+- Mongoose FrameWork
+- Chrome/Firefox
 ```
-Give examples
+Give example
 ```
 
 ### Installing
@@ -22,7 +23,8 @@ Give examples
 A step by step series of examples that tell you how to get a development env running
 
 Say what the step will be
-
+- sudo apt-get update
+- sudo apt-get install nodejs, mongoose, express, mongodb
 ```
 Give the example
 ```
@@ -36,8 +38,10 @@ until finished
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
-
-Explain how to run the automated tests for this system
+- Download or clone the source of the MCQ software
+- Change the directory  to MCQ directory
+- Run nodejs index.js or nodemon index.js
+- Redirect to loalhost:3000 in chrome.
 
 ### Break down into end to end tests
 
@@ -58,6 +62,10 @@ Give an example
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
+- Download or clone the source of the MCQ software
+- Change the directory  to MCQ directory
+- Run nodejs index.js or nodemon index.js
+- Redirect to loalhost:3000 in chrome.
 
 ## Built With
 
@@ -75,16 +83,15 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Praful Tondomker** - *Initial work* - [PurpleBooth](https://github.com/SSPrafulTondomker)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/SSPrafulTondomker/MCQ/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the IIIT-A License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
 * Inspiration
 * etc
