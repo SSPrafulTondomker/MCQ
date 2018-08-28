@@ -22,14 +22,15 @@ How to install the requirements
 
 ```
 - sudo apt-get update
-- sudo apt-get install nodejs, mongoose, mongodb
-- npm install nodemon express -g
+- sudo apt-get install nodejs, mongodb
+- npm install nodemon express mongoose -g
 ```
 
 ## Deployment
 ```
 - Download or clone the source of the MCQ software
 - Change the directory  to MCQ directory
+- Run 'npm install' 
 - Run nodejs index.js or nodemon index.js
 - Redirect to loalhost:3000 in chrome.
 ```
@@ -45,9 +46,9 @@ How to install the requirements
 ## Authors
 
 * **Praful Tondomker** - *Initial work* - [Praful](https://github.com/SSPrafulTondomker)
-* **Manvendra Dattatrey** - *Initial work* - [PurpleBooth](https://github.com/SSPrafulTondomker)
-* **Austin Kispotta** - *Initial work* - [PurpleBooth](https://github.com/SSPrafulTondomker)
-* **Reena Yadav** - *Initial work* - [PurpleBooth](https://github.com/SSPrafulTondomker)
-* **Vikash kumar** - *Initial work* - [PurpleBooth](https://github.com/vikash-kr)
+* **Manvendra Dattatrey** - *Initial work* - [Reena](https://github.com/SSPrafulTondomker)
+* **Austin Kispotta** - *Initial work* - [Austin](https://github.com/SSPrafulTondomker)
+* **Reena Yadav** - *Initial work* - [Manvendra](https://github.com/SSPrafulTondomker)
+* **Vikash kumar** - *Initial work* - [Vikash Kumar](https://github.com/vikash-kr)
 
 See also the list of [contributors](https://github.com/SSPrafulTondomker/MCQ/contributors) who participated in this project.
