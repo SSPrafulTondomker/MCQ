@@ -47,7 +47,7 @@ How to install the requirements
 
 * **Praful Tondomker** - *Initial work* - [Praful](https://github.com/SSPrafulTondomker)
 * **Manvendra Dattatrey** - *Initial work* - [Reena](https://github.com/SSPrafulTondomker)
-* **Austin Kispotta** - *Initial work* - [Austin](https://github.com/SSPrafulTondomker)
+* **Austin Kispotta** - *Initial work* - [Austin](https://github.com/austin)
 * **Reena Yadav** - *Initial work* - [Manvendra](https://github.com/SSPrafulTondomker)
 * **Vikash kumar** - *Initial work* - [Vikash Kumar](https://github.com/vikash-kr)
 
