@@ -46,9 +46,9 @@ How to install the requirements
 ## Authors
 
 * **Praful Tondomker** - *Initial work* - [Praful](https://github.com/SSPrafulTondomker)
-* **Manvendra Dattatrey** - *Initial work* - [Reena](https://github.com/SSPrafulTondomker)
+* **Manvendra Dattatrey** - *Initial work* - [Reena](https://github.com/reena-katrix)
 * **Austin Kispotta** - *Initial work* - [Austin](https://github.com/kayoxity)
-* **Reena Yadav** - *Initial work* - [Manvendra](https://github.com/SSPrafulTondomker)
+* **Reena Yadav** - *Initial work* - [Manvendra](https://github.com/MysticalShadow)
 * **Vikash kumar** - *Initial work* - [Vikash Kumar](https://github.com/vikash-kr)
 
 See also the list of [contributors](https://github.com/SSPrafulTondomker/MCQ/contributors) who participated in this project.
