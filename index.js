@@ -17,7 +17,7 @@ app.get('/login',function (req, res) {
 
 //test taker
 app.get('/user',function (req, res) {
-    console.log("User page");
+    console.log("User profile");
     res.render("user");}
 );
 
