@@ -31,62 +31,50 @@
 
       <div id="content-wrapper">
         <div style="padding-left:50px;padding-right: 50px;" class="container">
+          <% account.forEach(function(acc) {%>
           <div class="row">
-            <h1 id="name">Welcome Praful</h1>
+            <h1 id="name">Welcome <%=acc.name%></h1>
           </div>
-          <div class="row">
-              <div class="col-md-12">
-                <div class="row desc">
-                  <div class="col-md-6">
-                    <div class="desc-main">
-                      <div class="description">Name : Praful Tondomker</div>
-                      <div class="description">Course : Bachelor in Technology</div>
-                      <div class="description">Enrollment Number : IIT2016080</div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="row desc">
+                    <div class="col-md-6">
                       <div class="desc-main">
-                        <div class="description">Name : Praful Tondomker</div>
-                        <div class="description">Course : Bachelor in Technology</div>
-                        <div class="description">Enrollment Number : IIT2016086</div>
+                        <div class="description">Name : <%=acc.name%></div>
+                        <div class="description">Mail : <%=acc.mail%></div>
                       </div>
                     </div>
+                  </div>
                 </div>
-              </div>
-          </div>
+            </div>
+  				 
+  				<% }); %>
+          
 
 
           <div class="row text-center">
             <div class="col-md-4">
               <div class="card">
-                <div class="card-header">Data Structures</div>
+                <div class="card-header">Create Test</div>
                 <div class="card-main">
                   <button type="button" class="btn btn-danger">Start</button>
-                <div class="main-description">Time : 2 Hours</div>
-                <div class="main-description">Start Time : 4:30 PM</div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                  <div class="card-header">Data Structures</div>
-                  <div class="card-main">
-                    <button type="button" class="btn btn-danger">Start</button>
-                  <div class="main-description">Time : 2 Hours</div>
-                  <div class="main-description">Start Time : 4:30 PM</div>
-                  </div>
-                </div>
-              </div>
+            
+            <% contests.forEach(function(contest) {%>
               <div class="col-md-4">
                   <div class="card">
-                    <div class="card-header">Data Structures</div>
+                    <div class="card-header"><%=contest.title%></div>
                     <div class="card-main">
                       <button type="button" class="btn btn-danger">Start</button>
-                    <div class="main-description">Time : 2 Hours</div>
+                    <div class="main-description">Time : <%=contest.time%></div>
                     <div class="main-description">Start Time : 4:30 PM</div>
                     </div>
                   </div>
                 </div>
+            <% }); %>
+           
             </div>
             
         </div>
