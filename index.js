@@ -16,9 +16,21 @@ app.get('/login',function (req, res) {
 );
 
 //test taker
-app.get('/user',function (req, res) {
+app.get('/profile',function (req, res) {
     console.log("User profile");
-    res.render("user");}
+    res.render("profile");}
 );
+
+//Test page
+app.get('/test',function (req, res) {
+    console.log("Test page");
+    res.render("test");}
+);
+
+app.get('/instructions',function (req, res) {
+    console.log("Instruction page");
+    res.render("instructions");}
+);
+
 
 app.listen(3000, () => console.log('App server starting at port 3000!'))
