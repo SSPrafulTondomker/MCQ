@@ -28,54 +28,52 @@
       </ul>
 
       <!-- Side navbar finished -->
+      <div class="col-lg-2"></div>
 
-      <div id="content-wrapper">
-        <div style="padding-left:50px;padding-right: 50px;" class="container">
-          <div class="row">
-            <h1 id="name">Welcome Praful</h1>
-          </div>
-          <div class="row">
-              <div class="col-md-12">
-                <div class="row desc">
-                  <div class="col-md-6">
-                    <div class="desc-main">
-                      <div class="description">Name : Praful Tondomker</div>
-                      <div class="description">Course : Bachelor in Technology</div>
-                      <div class="description">Enrollment Number : IIT2016080</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <form class="col-lg-5" style="margin-top:70px" action="/setter" method="POST">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="name">contestName</label>
+              <input name="contestName" type="text" class="form-control" id="inputEmail4" placeholder="Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="Tag">Tag</label>
+              <input name="tag" type="Text" class="form-control" id="inputPassword4" placeholder="#today">
+            </div>
           </div>
 
+          <div class="form-group">
+            <label for="Question">Question</label>
+            <input name="question" type="text" class="form-control" id="inputAddress" placeholder="what is my name?">
+          </div>
 
-          <div class="row text-center">
-            <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">Create Test</div>
-                <div class="card-main">
-                  <button type="button" class="btn btn-danger">Start</button>
-                </div>
-              </div>
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label for="option">A</label>
+              <input name="op1" type="text" class="form-control" id="inputCity">
             </div>
-            
-            <div class="col-md-4">
-                <div class="card">
-                  <div class="card-header">Data Structures</div>
-                  <div class="card-main">
-                    <button type="button" class="btn btn-danger">Start</button>
-                  <div class="main-description">Time : 2 Hours</div>
-                  <div class="main-description">Start Time : 4:30 PM</div>
-                  </div>
-                </div>
-              </div>
+            <div class="form-group col-md-2">
+              <label for="option">B</label>
+              <input name="op2" type="text" class="form-control" id="inputCity">
+              </select>
             </div>
-            
-        </div>
-        
-        
-
-      </div>
+            <div class="form-group col-md-2">
+              <label for="option">C</label>
+              <input name="op3" type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="option">D</label>
+                <input name="op4" type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="option">ANS</label>
+                <input name="ANS" type="text" class="form-control" id="inputZip">
+            </div>
+          </div>
+         
+          <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </form>
+     
         <!-- /.container-fluid -->
 
         

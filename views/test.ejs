@@ -5,109 +5,68 @@
   <body id="page-top">
     <% include navbar %>
     
-    <div style="margin-top: 69px;" id="wrapper">
+  <div style="margin-top: 69px;" id="wrapper">
 
       <!-- Sidebar -->
       <ul class="sidebar navbarr-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-user-circle"></i>
-            <span>Profile</span>
+          <a class="nav-link" href="instructions">
+           
+            <span>Instructions</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-user-edit"></i>
-            <span>Edit Profile</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>View Scorecard</span></a>
+          <a class="nav-link" href="#">
+            <span>Q1</span></a>
         </li>
       </ul>
 
-      <!-- Side navbar finished -->
-
       <div id="content-wrapper">
-        <div style="padding-left:50px;padding-right: 50px;" class="container">
-          <div class="row">
-            <h1 id="name">Welcome Praful</h1>
+
+        <div class="container-fluid">
+
+
+          <div class="test-detail">
+            <span class="name"><%=contest.contestName%></span>
+            <span class="time">Time remaining : <span>time</span></span>
           </div>
-          <div class="row">
-              <div class="col-md-12">
-                <div class="row desc">
-                  <div class="col-md-6">
-                    <div class="desc-main">
-                      <div class="description">Name : Praful Tondomker</div>
-                      <div class="description">Course : Bachelor in Technology</div>
-                      <div class="description">Enrollment Number : IIT2016080</div>
+
+
+          <!-- Area Chart Example-->
+          <% test.forEach(function(q) {%>
+          <div style="margin-top:20px;" class="card mb-3">
+            <div class="card-header" style="text-align:left;">Question 1</div>
+            <div class="card-body">
+            <%=q.question %>
+            </div>
+            <div class="card-footer small text-muted">
+                <form class="row" action="check" method="POST">
+                    <div class="col-md-6 option"><input type="radio" name="op1" value=<%=q.op1 %>>  <%=q.op1 %></div>
+                    <div class="col-md-6 option"><input type="radio" name="op2" value=<%=q.op2 %>> <%=q.op2 %></div>
+                    <br>
+                    <div class="col-md-6 option"> <input type="radio" name="op3" value=<%=q.op3 %>> <%=q.op3 %></div>
+                    <div class="col-md-6 option"> <input type="radio" name="op4" value=<%=q.op4 %>> <%=q.op4 %></div>
+                    <input style="visibility: hidden;" type="radio" name="question" value= <%=q.question %>>
+                    <div class="start">
+                        <button type="submit" class="btn btn-danger btn-lg btn-block">Start</button>
                     </div>
-                  </div>
-                </div>
-              </div>
+                </form> 
+            </div>
           </div>
+          <% }); %>
+         
+         
 
-
-          <div class="row text-center">
-            <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">Create Test</div>
-                <div class="card-main">
-                  <button type="button" class="btn btn-danger">Start</button>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card">
-                  <div class="card-header">Data Structures</div>
-                  <div class="card-main">
-                    <button type="button" class="btn btn-danger">Start</button>
-                  <div class="main-description">Time : 2 Hours</div>
-                  <div class="main-description">Start Time : 4:30 PM</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
         </div>
-        
-        
-
-      </div>
         <!-- /.container-fluid -->
 
-        
 
-      
+      </div>
+      <!-- /.content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -127,6 +86,8 @@
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
+
+    
 
     <% include partials/footer %>
   </body>
