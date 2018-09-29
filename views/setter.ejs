@@ -1,20 +1,132 @@
 <% include partials/header %>
-</head>
 
-<body id="page-top">
+  </head>
+
+  <body id="page-top">
     <% include navbar %>
-    <!-- Header -->
-    <header class="masthead">
-        <div class="container">
-          <div class="intro-text">
-            <div class="intro-lead-in">I am test setter.</div>
-            <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+    
+    <div style="margin-top: 69px;" id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbarr-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-user-circle"></i>
+            <span>Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa-user-edit"></i>
+            <span>Edit Profile</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tables.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>View Scorecard</span></a>
+        </li>
+      </ul>
+
+      <!-- Side navbar finished -->
+      <div class="col-lg-2"></div>
+
+      <form class="col-lg-5" style="margin-top:70px" action="/setter" method="POST">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="name">contestName</label>
+              <input name="contestName" type="text" class="form-control" id="inputEmail4" placeholder="Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="Tag">Tag</label>
+              <input name="tag" type="Text" class="form-control" id="inputPassword4" placeholder="#today">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Question">Question</label>
+            <input name="question" type="text" class="form-control" id="inputAddress" placeholder="what is my name?">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label for="option">A</label>
+              <input name="op1" type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="option">B</label>
+              <input name="op2" type="text" class="form-control" id="inputCity">
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="option">C</label>
+              <input name="op3" type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="option">D</label>
+                <input name="op4" type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="option">ANS</label>
+                <input name="ANS" type="text" class="form-control" id="inputZip">
+            </div>
+          </div>
+         
+          <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </form>
+     
+        <!-- /.container-fluid -->
+
+        
+
+      
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
-      </header>
-  
-<% include partials/footer %>
+      </div>
+    </div>
 
-</body>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>
+
+    <% include partials/footer %>
+  </body>
+
 </html>

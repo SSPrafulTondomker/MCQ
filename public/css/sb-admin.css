@@ -4,7 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-sb-admin/blob/master/LICENSE)
  */
 
-html {
+ html {
   position: relative;
   min-height: 100%;
 }
@@ -413,6 +413,10 @@ body.sidebar-toggled footer.sticky-footer {
   padding: 15px 0;            /* Add padding to the top/bottom */
 }
 
+.card-body{
+  font-size: 26px;
+}
+
 .btn-danger {
   
   margin-bottom: 10px;
@@ -441,4 +445,55 @@ body.sidebar-toggled footer.sticky-footer {
   color: #212529;
   font-size: 15px;
   text-align: left;
+}
+
+.test-detail
+{
+  display: block;
+  background: #e9ecef;
+  padding: 12px;
+  border-radius: 5px;
+  color: #565a5e;
+
+}
+
+.name{
+  margin-left: 20px;
+}
+
+.time{
+  float: right;
+  margin-right: 20px;
+}
+
+.option{
+  padding: 10px;
+}
+
+.buttons{
+  display: block;
+  padding: 5px 40px;
+  font-size: 100px;
+  color: #D32F2F
+}
+
+.right{
+  float: right;
+}
+
+.text-muted{
+  font-size: 16px;
+}
+
+a{
+  color: #D32F2F;
+}
+
+a:hover{
+  color: rgb(255, 104, 104);
+}
+
+.start{
+  display: block;
+  padding: 5px 400px;
 }
