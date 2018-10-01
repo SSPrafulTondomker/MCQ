@@ -57,7 +57,9 @@ var testList = [
     {question : "",op1: "", op2 : "", op3: "",op4: ""}
 ];
 
-
+var answerList = [
+    {question: 0, ans: 0,score: 0}
+];
 
 //post requests
 app.post('/next',function (req, res) {
@@ -69,8 +71,9 @@ app.post('/next',function (req, res) {
 		}else{
             console.log("testList command executed Successful!!!");
             //contests   
+            console.log(TestList[1]);
                 testList =  TestList;
-                res.render("test",{contest: contestList,test: testList, account: accountList});
+                res.render("test",{contest: contestList,test: testList, account: accountList, answer: answerList});
                 console.log("testlist successful!!!");
                 console.log(name);
 		}
@@ -78,22 +81,20 @@ app.post('/next',function (req, res) {
 });
 
 app.post('/check',function (req, res) {
-    var question = req.body.question;
-    var op1 = req.body.op1;
-    var op2 = req.body.op2;
-    var op3 = req.body.op3;
-    var op4 = req.body.op4;
-
-    Test.find({question: question}, function(err, optionList){
-		if (err){
-			console.log(err);
-		}else{
-            console.log("optionList command executed Successful!!!");
-            //contests   
-            console.log(op1, op2, op3, op4);
-            res.render("test",{contest: contestList,test: testList, account: accountList});
-		}
-	});
+    var question = req.body.putScore;
+    console.log(question);
+    console.log("whoo");
+    res.render("test",{contest: contestList,test: testList, account: accountList});
+    // Test.find({question: question}, function(err, optionList){
+	// 	if (err){
+	// 		console.log(err);
+	// 	}else{
+    //         console.log("optionList command executed Successful!!!");
+    //         //contests   
+    //         console.log(op1, op2, op3, op4);
+    //         res.render("test",{contest: contestList,test: testList, account: accountList});
+	// 	}
+	// });
 });
 
 //login command starts
@@ -167,8 +168,9 @@ app.post('/setter',function (req, res) {
     var op2 = req.body.op2;
     var op3 = req.body.op3;
     var op4 = req.body.op4;
+    var ans = req.body.ans;
 
-	var newContest = {contestName: contestName, tag: tag, question: question, op1: op1, op2: op2, op3: op3, op4: op4};
+	var newContest = {contestName: contestName, tag: tag, question: question, op1: op1, op2: op2, op3: op3, op4: op4, ans: ans};
 
 	Test.create(newContest,function(err, newlyCre){
 		if(err)
@@ -229,7 +231,7 @@ app.get('/user',function (req, res) {
 
 app.get('/test',function (req, res) {
     console.log("User profile");
-    res.render("test", {account: accountList, contest: contestList, test: testList});
+    res.render("test", {account: accountList, contest: contestList, test: testList, answer: answerList});
 });
 
 app.get('/setter',function (req, res) {

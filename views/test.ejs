@@ -15,10 +15,12 @@
             <span>Instructions</span>
           </a>
         </li>
+        <% for (var i = 0; i < test.length; i++) {%>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span>Q1</span></a>
+          <a class="nav-link" href=<%= "#"+i%>>
+            <span><%="Q"+(i+1)%></span></a>
         </li>
+        <% } %>
       </ul>
 
       <div id="content-wrapper">
@@ -33,29 +35,35 @@
 
 
           <!-- Area Chart Example-->
-          <% test.forEach(function(q) {%>
+          <% for (var i = 0; i < test.length; i++) {%>
+            <% var C = 0 %>
           <div style="margin-top:20px;" class="card mb-3">
-            <div class="card-header" style="text-align:left;">Question 1</div>
-            <div class="card-body">
-            <%=q.question %>
+            <div class="card-header" style="text-align:left;">Question <%=i+1 %></div>
+            <div class="card-body" id=<%=i %>>
+            <%= test[i].question %>
             </div>
             <div class="card-footer small text-muted">
-                <form class="row" action="check" method="POST">
-                    <div class="col-md-6 option"><input type="radio" name="op1" value=<%=q.op1 %>>  <%=q.op1 %></div>
-                    <div class="col-md-6 option"><input type="radio" name="op2" value=<%=q.op2 %>> <%=q.op2 %></div>
+                <div class="row"><!-- <form class="row" > -->
+                    <div class="col-md-6 option" ><input type="radio" name="op1"  id=<%=i+"1" %> value=<%=test[i].op1 %>>  <%=test[i].op1 %></div>
+                    <div class="col-md-6 option" ><input type="radio" name="op2" id=<%=i+"2" %> value=<%=test[i].op2 %>> <%=test[i].op2 %></div>
                     <br>
-                    <div class="col-md-6 option"> <input type="radio" name="op3" value=<%=q.op3 %>> <%=q.op3 %></div>
-                    <div class="col-md-6 option"> <input type="radio" name="op4" value=<%=q.op4 %>> <%=q.op4 %></div>
-                    <input style="visibility: hidden;" type="radio" name="question" value= <%=q.question %>>
+                    <div class="col-md-6 option" > <input type="radio" name="op3" id=<%=i+"3" %> value=<%=test[i].op3 %>> <%=test[i].op3 %></div>
+                    <div class="col-md-6 option" > <input type="radio" name="op4" id=<%=i+"4" %> value=<%=test[i].op4 %>> <%=test[i].op4 %></div>
+                    <input style="visibility: hidden;" type="radio" name="question" value= <%=test[i].question %>>
                     <div class="start">
-                        <button type="submit" class="btn btn-danger btn-lg btn-block">Start</button>
+                        <button  class="btn btn-danger btn-lg btn-block" onclick= "checkAnswer(<%=i%>, <%=test[i].ans%>)">Start</button>
                     </div>
-                </form> 
+                  </div>
+                <!-- </form>  -->
             </div>
           </div>
-          <% }); %>
-         
-         
+          <% } %>
+          <form class= "row" action="/check" method="POST">
+          <div class="start">
+              <input style="visibility: hidden" name="putScore" id="putScore" value="0">
+              <button  class="btn btn-danger btn-lg btn-block" onclick="submit()" type="submit">Submit</button>
+          </div>
+          </form>
 
         </div>
         <!-- /.container-fluid -->
@@ -66,7 +74,59 @@
 
     </div>
     <!-- /#wrapper -->
-
+    <script>
+      var answer =[];
+      function submit()
+      {
+        console.log("hello");
+      }
+      function checkAnswer(quesNo, ans)
+      {
+        console.log(quesNo);
+        var i = quesNo;
+        var score = 0;
+        var yourAns = 0;
+        //var questNo = document.getElementById("FormulaText").value
+        var op1 = document.getElementById(i+"1").checked
+        var op2 = document.getElementById(i+"2").checked
+        var op3 = document.getElementById(i+"3").checked
+        var op4 = document.getElementById(i+"4").checked
+        if (op1 != 'false')
+        {
+          yourAns = 1;
+          if (ans == 1)
+              score = 1;
+        }
+        if (op2 != 'false')
+        {
+          yourAns = 2;
+          if (ans == 2)
+              score = 1;
+        }
+        if (op3 != 'false' )
+        {
+          yourAns = 3;
+          if (ans == 3)
+              score = 1;
+        }
+        if (op4 != 'false')
+        {
+          yourAns = 4;
+          if (ans == 4)
+              score = 1;
+        }
+        console.log(score, ans);
+        answer.push({question: i, yourAns: yourAns, ans: ans, score: score})
+         i = 0, score = 0;
+        for (i = 0; i < answer.length; i++)
+        {
+          score += answer[i].score;
+        }
+        console.log(score);
+        document.getElementById("putScore").innerHTML = score;
+        document.getElementById("putScore").value = score;
+      }
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
