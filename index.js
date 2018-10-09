@@ -78,9 +78,11 @@ var answerList = [
 var tagName="";
 var userName="";
 
+
 var scoreList= [{ userName : "", tag: "",score:""}];
 var displayScore = [{userName : "", tag: "",score:""}];
 var marks = [{ userName : "", tag: "",score:""}];
+
 
 
 //post requests
@@ -107,6 +109,7 @@ app.post('/check',function (req, res) {
     console.log(score);
     var newScore = [{userName: userName, tag: tagName, score: score}];
     scoreList = [{userName: userName, tag: tagName, score: score}];
+
     Score.create(newScore,function(err, newlyCre){
 		if(err)
 		{
@@ -147,6 +150,7 @@ app.post('/login',function (req, res) {
 
                 accountList = listSignUp;
                 res.render("user",{contests: contestList, account: accountList, marks: displayScore});
+
                 console.log("login successful!!!");
                 
             }else{ 
@@ -284,4 +288,4 @@ app.get('/setter',function (req, res) {
     res.render("setter");}
 );
 
-app.listen(3000, () => console.log('App server starting at port 3000!'))
+app.listen(4000, () => console.log('App server starting at port 3000!'))
