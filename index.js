@@ -34,6 +34,12 @@ var SignUpSchema = new mongoose.Schema({
 var SignUp = mongoose.model("SignUp", SignUpSchema);
 
 
+var ScoreSchema = new mongoose.Schema({
+	userName : String,
+    tag: String,
+    score: String,  
+});
+var Score = mongoose.model("Scorecard", ScoreSchema);
 //mongoose connection ends
 
 
@@ -53,24 +59,39 @@ var accountList = [
 var contestList = [
     {contestName : "salmond", time:"2:30"}
 ];
+Test.distinct("tag", function(err, listTest){
+    if (err){
+        console.log(err);
+    }else{
+        console.log("Test command executed Successful!!!");
+        console.log(listTest);
+        contestList = listTest;  
+    }
+});
 var testList = [
     {question : "",op1: "", op2 : "", op3: "",op4: ""}
 ];
 
+var answerList = [
+    {question: 0, ans: 0,score: 0}
+];
+var tagName="";
+var userName="";
 
 
 //post requests
 app.post('/next',function (req, res) {
     var name = req.body.tag;
-    
+    tagName = name;
     Test.find({tag: name}, function(err, TestList){
 		if (err){
 			console.log(err);
 		}else{
             console.log("testList command executed Successful!!!");
             //contests   
+            console.log(TestList[1]);
                 testList =  TestList;
-                res.render("test",{contest: contestList,test: testList, account: accountList});
+                res.render("test",{contest: contestList,test: testList, account: accountList, answer: answerList});
                 console.log("testlist successful!!!");
                 console.log(name);
 		}
@@ -78,21 +99,19 @@ app.post('/next',function (req, res) {
 });
 
 app.post('/check',function (req, res) {
-    var question = req.body.question;
-    var op1 = req.body.op1;
-    var op2 = req.body.op2;
-    var op3 = req.body.op3;
-    var op4 = req.body.op4;
-
-    Test.find({question: question}, function(err, optionList){
-		if (err){
+    var score = req.body.putScore;
+    console.log(score);
+    var newScore = [{userName: userName, tag: tagName, score: score}];
+    Score.create(newScore,function(err, newlyCre){
+		if(err)
+		{
 			console.log(err);
-		}else{
-            console.log("optionList command executed Successful!!!");
-            //contests   
-            console.log(op1, op2, op3, op4);
-            res.render("test",{contest: contestList,test: testList, account: accountList});
 		}
+		else{
+            console.log("score created!!!");
+            res.redirect("/user");
+        }
+       
 	});
 });
 
@@ -108,7 +127,7 @@ app.post('/login',function (req, res) {
 		}else{
             console.log("login command executed Successful!!!");
             if (listSignUp.length != 0){
-                
+                userName =  name;
                 //contests
                 Test.distinct("tag", function(err, listTest){
                     if (err){
@@ -140,9 +159,11 @@ app.post('/signup',function (req, res) {
     var name = req.body.name;
     var mail = req.body.mail;
     var password = req.body.pass;
-	var newAccount = {name: name, mail: mail, password: password};
+	var newAccount = new SignUp({
+        name: name, mail: mail, password: password
+        });
 
-	SignUp.create(newAccount,function(err, newlyCre){
+	newAccount.save(function(err, newlyCre){
 		if(err)
 		{
 			console.log(err);
@@ -167,10 +188,11 @@ app.post('/setter',function (req, res) {
     var op2 = req.body.op2;
     var op3 = req.body.op3;
     var op4 = req.body.op4;
+    var ans = req.body.ans;
 
-	var newContest = {contestName: contestName, tag: tag, question: question, op1: op1, op2: op2, op3: op3, op4: op4};
+	var newContest = {contestName: contestName, tag: tag, question: question, op1: op1, op2: op2, op3: op3, op4: op4, ans: ans};
 
-	Test.create(newContest,function(err, newlyCre){
+	Test.save(newContest,function(err, newlyCre){
 		if(err)
 		{
 			console.log(err);
@@ -229,7 +251,7 @@ app.get('/user',function (req, res) {
 
 app.get('/test',function (req, res) {
     console.log("User profile");
-    res.render("test", {account: accountList, contest: contestList, test: testList});
+    res.render("test", {account: accountList, contest: contestList, test: testList, answer: answerList});
 });
 
 app.get('/setter',function (req, res) {

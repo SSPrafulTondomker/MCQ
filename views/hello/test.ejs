@@ -5,29 +5,6 @@
   <body id="page-top">
     <% include navbar %>
     
-  
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Scorecard</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Correct answers : <span id="scores"></span>
-            <br>
-            Total questions : <span id="totalq"></span>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
   <div style="margin-top: 69px;" id="wrapper">
 
       <!-- Sidebar -->
@@ -44,12 +21,6 @@
             <span><%="Q"+(i+1)%></span></a>
         </li>
         <% } %>
-        <li class="nav-item active">
-          <a data-toggle="modal" data-target="#exampleModal" class="nav-link" href="#">
-            <span>Scorecard</span> 
-          </a>
-        </li>
-        
       </ul>
 
       <div id="content-wrapper">
@@ -79,12 +50,15 @@
                     <div class="col-md-6 option" > <input type="radio" name="op3" id=<%=i+"3" %> value=<%=test[i].op3 %>> <%=test[i].op3 %></div>
                     <div class="col-md-6 option" > <input type="radio" name="op4" id=<%=i+"4" %> value=<%=test[i].op4 %>> <%=test[i].op4 %></div>
                     <input style="visibility: hidden;" type="radio" name="question" value= <%=test[i].question %>>
-                    <div class="col-lg-4" style="margin-top:5%">
-                      <button  class="btn btn-danger btn-lg btn-block" onclick= "checkAnswer(<%=i%>, <%=test[i].ans%>)">set</button>
-                  </div>
-                  <div class="col-lg-4" style="margin-top:5%">
-                      <button  class="btn btn-danger btn-lg btn-block" onclick= "resetAnswer(<%=i%>)">reset</button>
-                 </div>
+                   
+                    
+                   <div class="col-lg-4" style="margin-top:5%">
+                        <button  class="btn btn-danger btn-lg btn-block" onclick= "checkAnswer(<%=i%>, <%=test[i].ans%>)">set</button>
+                    </div>
+                        <div class="col-lg-4" style="margin-top:5%">
+                        <button  class="btn btn-danger btn-lg btn-block" onclick= "resetAnswer(<%=i%>)">reset</button>
+                   </div>
+                      
                   </div>
                 <!-- </form>  -->
             </div>
@@ -106,13 +80,9 @@
 
     </div>
     <!-- /#wrapper -->
-    <script>
-      var answer =[];
-      function submit()
-      {
-        console.log("hello");
-      }
-
+    <script >
+      var answer = [];
+      
       function resetAnswer(quesNo)
       {
         var i = 0;
@@ -131,11 +101,10 @@
 
       function checkAnswer(quesNo, ans)
       {
-        console.log(quesNo);
         var i = quesNo;
         var score = 0;
         var yourAns = 0;
-        //var questNo = document.getElementById("FormulaText").value
+        var flag = 0;
         var op1 = document.getElementById(i+"1").checked
         var op2 = document.getElementById(i+"2").checked
         var op3 = document.getElementById(i+"3").checked
@@ -164,43 +133,43 @@
           if (ans == 4)
               score = 1;
         }
-        console.log(score, ans);
-         //create new entity in list
-         flag = 0;
-          for (i = 0; i < answer.length; i++)
+        
+        console.log(score, ans, yourAns);
+        //create new entity in list
+        flag = 0;
+        for (i = 0; i < answer.length; i++)
+        {
+          if (answer[i].question == quesNo)
           {
-            if (answer[i].question == quesNo)
+            flag = 1;
+          }
+        }
+        if (flag == 0)
+        {
+          answer.push({question: i, yourAns: yourAns, ans: ans, score: score})
+        }
+        else 
+        {
+            for (i = 0; i < answer.length; i++)
             {
-              flag = 1;
-            }
-          }
-          if (flag == 0)
-          {
-            answer.push({question: i, yourAns: yourAns, ans: ans, score: score})
-          }
-          else 
-          {
-              for (i = 0; i < answer.length; i++)
+              if (answer[i].question == quesNo)
               {
-                if (answer[i].question == quesNo)
-                {
-                  answer[i].yourAns = yourAns;
-                  answer[i].score = score;
-                }
-              } 
-          }
+                answer[i].yourAns = yourAns;
+                answer[i].score = score;
+              }
+            } 
+        }
         //ends
-         i = 0, score = 0;
+
+        //find score
+        i = 0, score = 0;
         for (i = 0; i < answer.length; i++)
         {
           score += answer[i].score;
         }
-        console.log(score);
+            
         document.getElementById("putScore").innerHTML = score;
         document.getElementById("putScore").value = score;
-
-        document.getElementById("scores").innerHTML = score;
-        document.getElementById("totalq").innerHTML = answer.length;
       }
     </script>
 
