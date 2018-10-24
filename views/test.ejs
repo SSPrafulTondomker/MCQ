@@ -17,9 +17,10 @@
             </button>
           </div>
           <div class="modal-body">
-            Correct answers : <span id="scores"></span>
+            Correct answers : <span id="scores">0</span>
             <br>
-            Total questions : <span id="totalq"></span>
+            Total attempted : <span id="totalq">0</span>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
@@ -31,7 +32,7 @@
   <div style="margin-top: 69px;" id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="sidebar navbarr-nav">
+      <ul class="sidebar navbarr-nav fixed-nav">
         <li class="nav-item active">
           <a class="nav-link" href="instructions">
            
@@ -59,16 +60,16 @@
 
           <div class="test-detail">
             <span class="name"><%=contest.contestName%></span>
-            <span class="time">Time remaining : <span>time</span></span>
+            <span class="time">Time remaining : <span id="timer">time</span></span>
           </div>
 
 
           <!-- Area Chart Example-->
           <% for (var i = 0; i < test.length; i++) {%>
             <% var C = 0 %>
-          <div style="margin-top:20px;" class="card mb-3">
+          <div style="margin-top:20px;" class="card mb-3" id=<%=i %>>
             <div class="card-header" style="text-align:left;">Question <%=i+1 %></div>
-            <div class="card-body" id=<%=i %>>
+            <div class="card-body">
             <%= test[i].question %>
             </div>
             <div class="card-footer small text-muted">
@@ -80,10 +81,10 @@
                     <div class="col-md-6 option" > <input type="radio" name="op4" id=<%=i+"4" %> value=<%=test[i].op4 %>> <%=test[i].op4 %></div>
                     <input style="visibility: hidden;" type="radio" name="question" value= <%=test[i].question %>>
                     <div class="col-lg-4" style="margin-top:5%">
-                      <button  class="btn btn-danger btn-lg btn-block" onclick= "checkAnswer(<%=i%>, <%=test[i].ans%>)">set</button>
+                      <button  class="btn btn-danger btn-lg btn-block" id="setButton<%= i %>" onclick= "checkAnswer(<%=i%>, <%=test[i].ans%>,<%=test.length%>)">set</button>
                   </div>
                   <div class="col-lg-4" style="margin-top:5%">
-                      <button  class="btn btn-danger btn-lg btn-block" onclick= "resetAnswer(<%=i%>)">reset</button>
+                      <button  class="btn btn-danger btn-lg btn-block" id="resetButton<%= i %>" onclick= "resetAnswer(<%=i%>)">reset</button>
                  </div>
                   </div>
                 <!-- </form>  -->
@@ -107,6 +108,7 @@
     </div>
     <!-- /#wrapper -->
     <script>
+      var sizeofArray = 0;
       var answer =[];
       function submit()
       {
@@ -129,8 +131,9 @@
         }
       }
 
-      function checkAnswer(quesNo, ans)
+      function checkAnswer(quesNo, ans,size)
       {
+        sizeofArray = size;
         console.log(quesNo);
         var i = quesNo;
         var score = 0;
@@ -189,6 +192,7 @@
                 }
               } 
           }
+
         //ends
          i = 0, score = 0;
         for (i = 0; i < answer.length; i++)
@@ -202,6 +206,43 @@
         document.getElementById("scores").innerHTML = score;
         document.getElementById("totalq").innerHTML = answer.length;
       }
+
+          
+          // Set the seconds we're counting down to
+          var distance =7;
+          distance = distance*1000;
+          // Update the count down every 1 second
+          var x = setInterval(function() {
+
+            // Reduce by 1 second
+            distance = distance-1000;
+
+            // Time calculations for days, hours, minutes and seconds
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="time"
+            document.getElementById("timer").innerHTML = hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+              clearInterval(x);
+              var i = 0;
+              console.log(sizeofArray);
+              for (i = 0; i < sizeofArray; i++)
+              {
+                document.getElementById("setButton"+i).disabled = true;
+                document.getElementById("resetButton"+i).disabled = true;
+              } 
+              document.getElementById("timer").innerHTML = "Time Over";
+              
+            }
+          }, 1000);
+
+        
+      
     </script>
 
     <!-- Bootstrap core JavaScript-->

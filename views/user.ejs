@@ -7,8 +7,36 @@
     
     <div style="margin-top: 69px;" id="wrapper">
 
+      <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">View Scorecard</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="/score">
+              
+              Enter contest tag : <input type="text" id="tagname" name="tagname">
+              <input type="submit" class="btn btn-primary" onclick="calculate(document.getElementById('tagname').value)">
+              <!-- style="visibility:hidden;" -->
+              <div>
+                Score : <span id="display"><%=marks[0].score %></span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
       <!-- Sidebar -->
-      <ul class="sidebar navbarr-nav">
+      <ul class="sidebar navbarr-nav fixed-nav">
         <li class="nav-item active">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-user-circle"></i>
@@ -20,11 +48,13 @@
             <i class="fas fa-fw fa-user-edit"></i>
             <span>Edit Profile</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+        <li class="nav-item active">
+          <a data-toggle="modal" data-target="#exampleModal" class="nav-link" href="#">
             <i class="fas fa-fw fa-table"></i>
-            <span>View Scorecard</span></a>
+            <span>Scorecard</span> 
+          </a>
         </li>
+       
       </ul>
 
       <!-- Side navbar finished -->
@@ -136,6 +166,13 @@
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
+
+    <script>
+      function calculate(tagname)
+      {
+        console.log(tagname);
+      }
+    </script>
 
     <% include partials/footer %>
   </body>

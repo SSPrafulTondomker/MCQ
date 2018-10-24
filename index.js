@@ -79,6 +79,12 @@ var tagName="";
 var userName="";
 
 
+var scoreList= [{ userName : "", tag: "",score:""}];
+var displayScore = [{userName : "", tag: "",score:""}];
+var marks = [{ userName : "", tag: "",score:""}];
+
+
+
 //post requests
 app.post('/next',function (req, res) {
     var name = req.body.tag;
@@ -102,6 +108,8 @@ app.post('/check',function (req, res) {
     var score = req.body.putScore;
     console.log(score);
     var newScore = [{userName: userName, tag: tagName, score: score}];
+    scoreList = [{userName: userName, tag: tagName, score: score}];
+
     Score.create(newScore,function(err, newlyCre){
 		if(err)
 		{
@@ -109,6 +117,7 @@ app.post('/check',function (req, res) {
 		}
 		else{
             console.log("score created!!!");
+            console.log(scoreList);
             res.redirect("/user");
         }
        
@@ -135,12 +144,13 @@ app.post('/login',function (req, res) {
                     }else{
                         console.log("Test command executed Successful!!!");
                         console.log(listTest);
-                        contestList = listTest;  
+                        contestList = listTest;
                     }
                 });
 
                 accountList = listSignUp;
-                res.render("user",{contests: contestList, account: accountList});
+                res.render("user",{contests: contestList, account: accountList, marks: displayScore});
+
                 console.log("login successful!!!");
                 
             }else{ 
@@ -151,6 +161,24 @@ app.post('/login',function (req, res) {
 	});
 });
 //login post request ends
+
+
+app.post('/score',function (req, res){
+    var tagname = req.body.tagname;
+    
+    Score.find({tag: tagname}, function(err, scoreL){
+        if (err){
+			console.log(err);
+        }
+        else{
+            console.log("score command executed Successful!!!");
+            console.log(scoreL[0].score);
+            displayScore = scoreL;
+            res.render("user",{contests: contestList, account: accountList, marks: displayScore});
+        }
+    }).limit(1).sort({$natural:-1});
+});
+//getting score ends
 
 
 //signup post request starts
@@ -192,7 +220,7 @@ app.post('/setter',function (req, res) {
 
 	var newContest = {contestName: contestName, tag: tag, question: question, op1: op1, op2: op2, op3: op3, op4: op4, ans: ans};
 
-	Test.save(newContest,function(err, newlyCre){
+	Test.create(newContest,function(err, newlyCre){
 		if(err)
 		{
 			console.log(err);
@@ -246,7 +274,8 @@ app.get('/user',function (req, res) {
             contestList = listTest;  
         }
     });
-    res.render("user", {contests: contestList, account: accountList});
+    console.log(answerList);
+    res.render("user", {contests: contestList, account: accountList, marks: displayScore});
 });
 
 app.get('/test',function (req, res) {
